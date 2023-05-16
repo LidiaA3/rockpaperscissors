@@ -5,10 +5,10 @@ import Papericon from "./icons/Papericon";
 import Scissorsicon from "./icons/Scissorsicon";
 
 export default function Game() {
-    const choices = ['rock', 'paper', 'scissors'];
+    const choices = [{select: 'rock', icon: <Rockicon />}, {select: 'paper', icon: <Papericon />}, {select: 'scissors', icon: <Scissorsicon />}];
 
     const [playerSelect, setPlayerSelect] = useState('');
-    const [machineSelect, setMachineSelect] = useState(choices[Math.floor(Math.random() * choices.length)]);
+    const [machineSelect, setMachineSelect] = useState(choices[Math.floor(Math.random() * choices.length)].select);
 
     const [gameStatus, setGameStatus] = useState('¡Select an option and play with machine!');
 
@@ -18,36 +18,26 @@ export default function Game() {
     const [componentMachine, setComponentMachine] = useState();
     const [componentPlayer, setComponentPlayer] = useState();
 
+    function selectionPlayer(i) {
+        setPlayerSelect(choices[i].select);
+        setComponentPlayer(choices[i].icon);
+        console.log('Player:', choices[i].select);
+    }
+
 
     function play() {
         const randomIndex = Math.floor(Math.random() * choices.length);
-        setMachineSelect(choices[randomIndex]);
-
-        if (machineSelect === 'rock') {
-            setComponentMachine(<Rockicon />);
-        } else if (machineSelect === 'paper') {
-            setComponentMachine(<Papericon />);
-        } else {
-            setComponentMachine(<Scissorsicon />);
-        }
-
-        // useEffect({
-        //     if (playerSelect === 'rock') {
-        //         setComponentMachine(<Rockicon />);
-        //     } else if (playerSelect === 'paper') {
-        //         setComponentMachine(<Papericon />);
-        //     } else {
-        //         setComponentMachine(<Scissorsicon />);
-        //     }
-        // }, playerSelect);
+        setMachineSelect(choices[randomIndex].select);
+        setComponentMachine(choices[randomIndex].icon);
+        console.log('Machine:', choices[randomIndex].select);
 
         if (playerSelect === machineSelect) {
             setGameStatus('its a tie');
         } else if (
-                playerSelect === 'rock' && machineSelect === 'scissors' ||
-                playerSelect === 'paper' && machineSelect === 'rock' ||
-                playerSelect === 'scissors' && machineSelect === 'paper'
-            ) {
+            playerSelect === 'rock' && machineSelect === 'scissors' ||
+            playerSelect === 'paper' && machineSelect === 'rock' ||
+            playerSelect === 'scissors' && machineSelect === 'paper'
+        ) {
             setGameStatus('¡You win the game!');
             setScorePlayer(scorePlayer + 1);
         } else {
@@ -74,9 +64,9 @@ export default function Game() {
             <p>{gameStatus}</p>
 
             <div className="btn__section">
-                <ButtonOption selectBtn={true} value={choices[0]} onBtnClick={() => setPlayerSelect(choices[0])} />
-                <ButtonOption selectBtn={false} value={choices[1]} onBtnClick={() => setPlayerSelect(choices[1])} />
-                <ButtonOption selectBtn={false} value={choices[2]} onBtnClick={() => setPlayerSelect(choices[2])} />
+                <ButtonOption selectBtn={true} value={choices[0].select} onBtnClick={() => selectionPlayer(0)} />
+                <ButtonOption selectBtn={false} value={choices[1].select} onBtnClick={() => selectionPlayer(1)} />
+                <ButtonOption selectBtn={false} value={choices[2].select} onBtnClick={() => selectionPlayer(2)} />
             </div>
 
             <button onClick={() => play()} type="button">Play</button>

@@ -96,6 +96,10 @@ button,
   gap: 2rem;
 }
 
+.boardgame {
+  display: flex;
+}
+
 ::-webkit-scrollbar {
   width: 1rem;
 }
