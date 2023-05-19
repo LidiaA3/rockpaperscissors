@@ -8,7 +8,7 @@ export default function Game() {
     const choices = [{select: 'rock', icon: <Rockicon />}, {select: 'paper', icon: <Papericon />}, {select: 'scissors', icon: <Scissorsicon />}];
 
     const [playerSelect, setPlayerSelect] = useState('');
-    const [machineSelect, setMachineSelect] = useState(choices[Math.floor(Math.random() * choices.length)].select);
+    const [machineSelect, setMachineSelect] = useState('');
 
     const [gameStatus, setGameStatus] = useState('¡Select an option and play with machine!');
 
@@ -30,23 +30,23 @@ export default function Game() {
         setMachineSelect(choices[randomIndex].select);
         setComponentMachine(choices[randomIndex].icon);
         console.log('Machine:', choices[randomIndex].select);
-
-        useEffect(() => {
-            if (playerSelect === machineSelect) {
-                setGameStatus('its a tie');
-            } else if (
-                playerSelect === 'rock' && machineSelect === 'scissors' ||
-                playerSelect === 'paper' && machineSelect === 'rock' ||
-                playerSelect === 'scissors' && machineSelect === 'paper'
-            ) {
-                setGameStatus('¡You win the game!');
-                setScorePlayer(scorePlayer + 1);
-            } else {
-                setGameStatus('¡Oooh machine win!');
-                setScoreMachine(scoreMachine + 1);
-            }
-        }, [machineSelect, playerSelect])
     }
+
+    useEffect(() => {
+        if (playerSelect === machineSelect) {
+            setGameStatus('its a tie');
+        } else if (
+            playerSelect === 'rock' && machineSelect === 'scissors' ||
+            playerSelect === 'paper' && machineSelect === 'rock' ||
+            playerSelect === 'scissors' && machineSelect === 'paper'
+        ) {
+            setGameStatus('¡You win the game!');
+            setScorePlayer(scorePlayer + 1);
+        } else {
+            setGameStatus('¡Oooh machine win!');
+            setScoreMachine(scoreMachine + 1);
+        }
+    }, [machineSelect])
 
     return (
         <>
@@ -57,7 +57,7 @@ export default function Game() {
             </div>
 
             <div className="boardgame">
-                {componentMachine}
+                <span className="color-text">{componentMachine}</span>
                 <p>VS</p>
                 {componentPlayer}
             </div>

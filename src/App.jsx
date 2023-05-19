@@ -4,7 +4,9 @@ function App() {
 
   return (
     <>
-      <h1>This a rock paper scissors game</h1>
+      <div className="header">
+        <h1>This a rock paper scissors game</h1>
+      </div>
       <Game />
     </>
   )
