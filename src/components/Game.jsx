@@ -33,18 +33,20 @@ export default function Game() {
     }
 
     useEffect(() => {
-        if (playerSelect === machineSelect) {
-            setGameStatus('its a tie');
-        } else if (
-            playerSelect === 'rock' && machineSelect === 'scissors' ||
-            playerSelect === 'paper' && machineSelect === 'rock' ||
-            playerSelect === 'scissors' && machineSelect === 'paper'
-        ) {
-            setGameStatus('¡You win the game!');
-            setScorePlayer(scorePlayer + 1);
-        } else {
-            setGameStatus('¡Oooh machine win!');
-            setScoreMachine(scoreMachine + 1);
+        if (playerSelect !== ''){
+            if (playerSelect === machineSelect) {
+                setGameStatus('its a tie');
+            } else if (
+                playerSelect === 'rock' && machineSelect === 'scissors' ||
+                playerSelect === 'paper' && machineSelect === 'rock' ||
+                playerSelect === 'scissors' && machineSelect === 'paper'
+            ) {
+                setGameStatus('¡You win the game!');
+                setScorePlayer(scorePlayer + 1);
+            } else {
+                setGameStatus('¡Oooh machine win!');
+                setScoreMachine(scoreMachine + 1);
+            }
         }
     }, [machineSelect])
 
