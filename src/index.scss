@@ -8,7 +8,7 @@ $color-gray: #c9c9c9;
 $color-dark: #1c1c1e;
 
 $color-linear-dark: $color-main-dark;
-$color-linear-light: $color-main-light;
+$color-linear-light: $color-main;
 
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
@@ -101,6 +101,21 @@ button,
   gap: .5rem;
 }
 
+@media all and (min-width: 600px) {
+  button,
+  .btn {
+    font-size: 1.8rem;
+
+    & svg {
+      width: 7rem;
+      height: 7rem;
+    }
+  }
+  .btn__section {
+    gap: 1rem;
+  }
+}
+
 a {
   font-weight: 500;
   color: $color-main;
@@ -128,6 +143,17 @@ a {
   & svg {
     width: 6rem;
     height: 6rem;
+  }
+}
+
+@media all and (min-width: 600px) {
+  .boardgame {
+    gap: 2rem;
+
+    & svg {
+      width: 8rem;
+      height: 8rem;
+    }
   }
 }
 
