@@ -17,12 +17,17 @@ export default function Game() {
 
     const [componentMachine, setComponentMachine] = useState();
     const [componentPlayer, setComponentPlayer] = useState();
+    
+    const [btnSelect, setBtnSelect] = useState('');
 
     function selectionPlayer(i) {
         setPlayerSelect(choices[i].select);
         setComponentPlayer(choices[i].icon);
         console.log('Player:', choices[i].select);
+        setBtnSelect(i);
     }
+
+    console.log(btnSelect)
 
 
     function play() {
@@ -68,9 +73,9 @@ export default function Game() {
             <p>{gameStatus}</p>
 
             <div className="btn__section">
-                <ButtonOption selectBtn={true} value={choices[0].select} onBtnClick={() => selectionPlayer(0)} />
-                <ButtonOption selectBtn={false} value={choices[1].select} onBtnClick={() => selectionPlayer(1)} />
-                <ButtonOption selectBtn={false} value={choices[2].select} onBtnClick={() => selectionPlayer(2)} />
+                <ButtonOption selectBtn={btnSelect == 0 ? true : false} value={choices[0].select} onBtnClick={() => selectionPlayer(0)} />
+                <ButtonOption selectBtn={btnSelect == 1 ? true : false} value={choices[1].select} onBtnClick={() => selectionPlayer(1)} />
+                <ButtonOption selectBtn={btnSelect == 2 ? true : false} value={choices[2].select} onBtnClick={() => selectionPlayer(2)} />
             </div>
 
             <button onClick={() => play()} type="button">Play</button>

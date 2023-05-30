@@ -76,7 +76,6 @@ button,
   & svg {
     width: 5rem;
     height: 5rem;
-    fill: $color-main;
   }
 
   &:focus,
@@ -89,11 +88,16 @@ button,
   background-color: $color-light;
   color: $color-main;
   border-color: $color-main;
-  fill: $color-main;
 
-  &:hover {
-    background-color: $color-gray;
+  &:focus,
+  &:focus-visible {
+    outline: none;
   }
+}
+
+.btn__active {
+  background-color: $color-main;
+  color: $color-light;
 }
 
 .btn__section {
@@ -138,7 +142,6 @@ a {
 .boardgame {
   display: flex;
   gap: 1rem;
-  fill: $color-light;
 
   & svg {
     width: 6rem;
@@ -159,7 +162,6 @@ a {
 
 .color-text {
   color: $color-main;
-  fill: $color-main;
 }
 
 p {

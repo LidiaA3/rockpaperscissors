@@ -18,7 +18,7 @@ export default function ButtonOption(props) {
 
     return (
         <>
-            <button className="btn btn__option" onClick={props.onBtnClick}>
+            <button className={`btn btn__option ${props.selectBtn ? 'btn__active' : ''}`} onClick={props.onBtnClick}>
                 {element}
                 {props.value}
             </button>
